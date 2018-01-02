@@ -6,4 +6,4 @@ A bunch of utilities for the telehack.com arpanet simulation
 
 Usage: ./arctan 123 123 123 123 123 123 123 123
 
-## WARPOKE.BAS: poke everything with every address
+## warpoke.bas: poke everything with every address
