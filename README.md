@@ -7,3 +7,6 @@ A bunch of utilities for the telehack.com arpanet simulation
 Usage: ./arctan 123 123 123 123 123 123 123 123
 
 ## warpoke.bas: poke everything with every address
+
+
+## offset.c: UNFINISHED offset finder for satan.exe
