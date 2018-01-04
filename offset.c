@@ -23,9 +23,14 @@ int main(int argc, char * argv[]){
 	while(!feof(in)){
 		strcpy(a, advance(in));
 		for(j = 0; j <= VALUESIZE; j++){
-			while(compare(a, values[j]) && sizeof(values[j]) <= i){
+			while(compare(a, values[j])){
 				i++;
+				if(sizeof(values[j]) <= i){
+					printf("Found match!");
+					return 0;
+				}
 			}
+			i = 0;
 		}
 	}
 	printf("Couldn't find an offset, is the data correct?");
@@ -34,6 +39,7 @@ int main(int argc, char * argv[]){
 
 int compare(char * a, char * b){
 	if(a[0] == b[0] && a[1] == b[1])
+		// printf("Found match at %s %s!\n", a, b);
 		return 1;
 	return 0;
 }
