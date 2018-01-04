@@ -5,19 +5,26 @@
 #include<stdlib.h>
 #include<string.h>
 
+#define VALUESIZE 1
+const char values[3][5] = {
+	{"4c4f"},
+	{"aaaa"}
+};
+
 char * advance(FILE * in);
+int compare(char * a, char * b);
 
 int main(int argc, char * argv[]){
 	if(argc == 1)
 		return -1;
 	FILE * in = fopen(argv[1], "r");
-	int count;
+	int i, j;
+	char a[3];
 	while(!feof(in)){
-		count++;
-		if(!strcmp(advance(in), "4c")){
-			printf("FOUND 4c at %d\n", count);
-			if(!strcmp(advance(in), "4f")){
-				printf("FOUND 4f at %d\n", count);
+		strcpy(a, advance(in));
+		for(j = 0; j <= VALUESIZE; j++){
+			while(compare(a, values[j]) && sizeof(values[j]) <= i){
+				i++;
 			}
 		}
 	}
@@ -25,8 +32,14 @@ int main(int argc, char * argv[]){
 	return -1;
 }
 
+int compare(char * a, char * b){
+	if(a[0] == b[0] && a[1] == b[1])
+		return 1;
+	return 0;
+}
+
 char * advance(FILE * in){
-	char a[3];
+	static char a[3];
 	int i;
 	for(i = 0; i <= 1; i++){
 		a[i] = fgetc(in);
