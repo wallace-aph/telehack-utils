@@ -6,9 +6,9 @@
 #include<string.h>
 
 #define VALUESIZE 1
-const char values[3][5] = {
-	{"4c4f"},
-	{"aaaa"}
+const char values[5][10] = {
+	{"414952"},
+	{"424f4d42"},
 };
 
 char * advance(FILE * in);
@@ -23,14 +23,13 @@ int main(int argc, char * argv[]){
 	while(!feof(in)){
 		strcpy(a, advance(in));
 		for(j = 0; j <= VALUESIZE; j++){
-			while(compare(a, values[j])){
-				i++;
-				if(sizeof(values[j]) <= i){
-					printf("Found match!");
+			for(i = 0; compare(a, values[j]); i++){
+				if(strlen(values[j]) == i){
+					printf("Found match!\nDEBUG:\na=%s\nstring=%s\ni=%d\n", a, values[j], i);
 					return 0;
 				}
+				strcpy(a, advance(in));
 			}
-			i = 0;
 		}
 	}
 	printf("Couldn't find an offset, is the data correct?");
@@ -39,7 +38,6 @@ int main(int argc, char * argv[]){
 
 int compare(char * a, char * b){
 	if(a[0] == b[0] && a[1] == b[1])
-		// printf("Found match at %s %s!\n", a, b);
 		return 1;
 	return 0;
 }
